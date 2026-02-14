@@ -1,0 +1,898 @@
+/* ==========================================================================
+   Experience Page - Horizontal Scroll Design
+   Features scroll-driven horizontal timeline
+   ========================================================================== */
+
+/* ==========================================================================
+   PAGE SETUP
+   ========================================================================== */
+
+.experience-page {
+  background-color: var(--color-bg);
+  overflow-x: hidden;
+}
+
+/* Transparent header for experience page */
+.header--transparent {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed);
+  transition: background-color var(--transition-base), backdrop-filter var(--transition-base), box-shadow var(--transition-base);
+}
+
+.header--transparent.is-scrolled {
+  background-color: rgba(235, 235, 235, 0.92);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   HORIZONTAL SCROLL SECTION
+   ========================================================================== */
+
+.experience-horizontal {
+  position: relative;
+  height: calc(7 * 100vh); /* 7 cards worth of scroll space */
+  background-color: var(--color-bg);
+}
+
+/* Viewport - sticky container for horizontal scroll */
+.experience-horizontal__viewport {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: calc(80px + var(--space-md)) var(--space-xl) var(--space-md);
+}
+
+/* Section Header */
+.experience-horizontal__header {
+  flex-shrink: 0;
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-md);
+}
+
+.experience-horizontal__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: var(--font-regular);
+  color: var(--color-text-primary);
+  margin-top: var(--space-xs);
+}
+
+/* Horizontal Track - flex layout for scroll */
+.experience-horizontal__track {
+  display: flex;
+  gap: var(--space-xl);
+  padding: var(--space-sm) var(--space-md) var(--space-lg);
+  flex: 1;
+  min-height: 0; /* Allow flex child to shrink below content size */
+  align-items: stretch;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+/* Scroll Hint - Hidden (no longer used) */
+.experience-horizontal__hint {
+  display: none;
+}
+
+/* ==========================================================================
+   EXPERIENCE CARDS
+   ========================================================================== */
+
+.experience-card {
+  flex-shrink: 0;
+  width: clamp(380px, 38vw, 500px);
+  max-height: 100%;
+  overflow-y: auto;
+  background: var(--color-white);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-border);
+  padding: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+/* Smooth scrollbar styling for webkit browsers */
+.experience-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.experience-card::-webkit-scrollbar-track {
+  background: var(--color-bg-alt);
+  border-radius: 3px;
+}
+
+.experience-card::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+.experience-card::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+.experience-card:hover {
+  border-color: var(--color-text-primary);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+/* Wide card for AVENTIOR - larger width in horizontal scroll */
+.experience-card--wide {
+  width: clamp(900px, 80vw, 1200px);
+}
+
+/* Card Number */
+.experience-card__number {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: var(--tracking-wider);
+}
+
+/* Card Header */
+.experience-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.experience-card__logo {
+  flex-shrink: 0;
+}
+
+.experience-card__header .experience-card__company {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  color: var(--color-text-primary);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.experience-card__header .experience-card__role {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  padding-left: var(--space-sm);
+  border-left: 1px solid var(--color-border);
+}
+
+.experience-card__meta {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.experience-card__date {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-primary);
+}
+
+.experience-card__location {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.experience-card__badge {
+  display: inline-block;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  background-color: var(--color-bg-alt);
+  padding: 2px 8px;
+  border-radius: var(--border-radius-sm);
+  margin-top: 4px;
+}
+
+/* Card Content */
+.experience-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.experience-card__description {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-sm);
+}
+
+/* Card Highlights */
+.experience-card__highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.experience-card__highlights li {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  padding-left: var(--space-md);
+  position: relative;
+  line-height: var(--leading-relaxed);
+}
+
+.experience-card__highlights li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-text-muted);
+}
+
+.experience-card__highlights strong {
+  color: var(--color-text-primary);
+  font-weight: var(--font-semibold);
+}
+
+/* ==========================================================================
+   WIDE CARD - PROJECTS GRID
+   ========================================================================== */
+
+.experience-card__projects {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.experience-card__project {
+  padding: var(--space-sm);
+  background-color: var(--color-bg-alt);
+  border-radius: var(--border-radius-sm);
+  border-left: 3px solid var(--color-text-primary);
+}
+
+.experience-card__project--single {
+  margin-top: var(--space-sm);
+  padding: var(--space-sm);
+  background-color: var(--color-bg-alt);
+  border-radius: var(--border-radius-sm);
+  border-left: 3px solid var(--color-text-primary);
+}
+
+.experience-card__project-title {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.experience-card__project-client {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.experience-card__project .experience-card__highlights {
+  margin-top: var(--space-xs);
+}
+
+.experience-card__project .experience-card__highlights li {
+  font-size: var(--text-xs);
+}
+
+.experience-card__logo{
+  flex-shrink: 0;
+  order: 1;
+
+  width: 60px;
+  height: 60px;
+  border-radius: var(--border-radius-sm);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.experience-card__logo img{
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+}
+
+
+/* ==========================================================================
+   IMAGE PLACEHOLDERS
+   ========================================================================== */
+
+.image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  background-color: var(--color-bg-alt);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--border-radius-md);
+  min-height: 200px;
+  text-align: center;
+}
+
+.image-placeholder__icon {
+  font-size: 2rem;
+  opacity: 0.6;
+}
+
+.image-placeholder__text {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  max-width: 180px;
+  line-height: var(--leading-relaxed);
+}
+
+.image-placeholder--small {
+  min-height: auto;
+  padding: var(--space-sm) var(--space-md);
+  flex-direction: row;
+  gap: var(--space-xs);
+  width: 60px;
+  height: 60px;
+  border-radius: var(--border-radius-sm);
+}
+
+.image-placeholder--small .image-placeholder__text {
+  font-size: var(--text-xs);
+  max-width: none;
+}
+
+/* Dark placeholder for dark sections */
+.image-placeholder--dark {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.image-placeholder--dark .image-placeholder__text {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ==========================================================================
+   SECTION TRANSITIONS
+   ========================================================================== */
+
+.section-transition {
+  height: 300px;
+  position: relative;
+  z-index: 1;
+}
+
+.section-transition--light-to-dark {
+  background: linear-gradient(to bottom,
+    var(--color-bg) 0%,
+    #d0d0d0 10%,
+    #b5b5b5 20%,
+    #959595 30%,
+    #787878 40%,
+    #5e5e5e 50%,
+    #454545 60%,
+    #2d2d2d 70%,
+    #1f1f1f 80%,
+    #121212 90%,
+    #0a0a0a 100%
+  );
+}
+
+/* ==========================================================================
+   EDUCATION SECTION (DARK)
+   ========================================================================== */
+
+.education-section--dark {
+  background-color: #0a0a0a;
+  padding: var(--space-3xl) var(--space-xl);
+}
+
+.education-section__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.education-section__header {
+  margin-bottom: var(--space-2xl);
+}
+
+.intro__label--light {
+  color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.education-section__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #fff;
+  margin-top: var(--space-sm);
+}
+
+/* Education Card */
+.education-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+  padding: var(--space-xl);
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-md);
+}
+
+.education-card__content {
+  max-width: 500px;
+}
+
+.education-card__date {
+  display: block;
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: var(--space-sm);
+}
+
+.education-card__degree {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  color: #fff;
+  margin-bottom: var(--space-xs);
+}
+
+.education-card__school {
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: var(--space-md);
+}
+
+.education-card__description {
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.5);
+  line-height: var(--leading-relaxed);
+}
+
+.education-card {
+  display: grid;
+  grid-template-columns: 1fr 300px; /* key fix */
+  gap: var(--space-2xl);
+  align-items: center;
+  padding: var(--space-xl);
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-md);
+}
+
+.education-card__image{
+  width: 260px;
+  height: 160px;
+  justify-self: end;   /* pushes to right */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* ==========================================================================
+   FOOTER SECTION (DARK) - Adapted from about.css
+   ========================================================================== */
+
+.experience-footer {
+  min-height: 100vh;
+  background-color: #0a0a0a;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2xl) var(--space-xl);
+}
+
+/* Footer Header */
+.experience-footer__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding-bottom: var(--space-xl);
+}
+
+.experience-footer__status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.experience-footer__icon {
+  font-size: 1.25rem;
+  color: #fff;
+  animation: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.experience-footer__logo {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  color: #fff;
+  letter-spacing: var(--tracking-wide);
+}
+
+.experience-footer__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Experience Stat */
+.experience-footer__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-2xl) 0;
+}
+
+.stat-number {
+  font-family: var(--font-serif);
+  font-size: clamp(5rem, 15vw, 10rem);
+  font-weight: var(--font-regular);
+  color: #fff;
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+}
+
+.stat-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin-top: var(--space-sm);
+}
+
+/* Footer Navigation */
+.experience-footer__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  padding: var(--space-lg) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: rgba(255, 255, 255, 0.4);
+  transition: color var(--transition-fast);
+}
+
+.footer-nav__item:hover {
+  color: #fff;
+}
+
+.footer-nav__item--active {
+  color: #fff;
+}
+
+.footer-nav__number {
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+}
+
+.footer-nav__text {
+  font-size: var(--text-sm);
+  font-family: var(--font-sans);
+}
+
+.footer-nav__year {
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.4);
+  font-family: var(--font-mono);
+}
+
+/* Contact CTA */
+.experience-footer__cta {
+  text-align: center;
+  padding: var(--space-2xl) 0;
+}
+
+.cta-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: var(--space-md);
+  letter-spacing: var(--tracking-wide);
+}
+
+.cta-heading {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 12vw, 8rem);
+  font-weight: var(--font-regular);
+  font-style: italic;
+  color: #fff;
+  line-height: 1;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.cta-heading:hover {
+  opacity: 0.8;
+  transform: translateY(-4px);
+}
+
+/* Footer Links */
+.experience-footer__links {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xl);
+}
+
+.footer-link {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.4);
+  transition: color var(--transition-fast);
+  letter-spacing: var(--tracking-wide);
+}
+
+.footer-link:hover {
+  color: #fff;
+}
+
+/* Bottom CTA */
+.experience-footer__bottom {
+  text-align: center;
+  padding-top: var(--space-xl);
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.bottom-cta__number {
+  display: block;
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  letter-spacing: var(--tracking-wider);
+  margin-bottom: var(--space-xs);
+}
+
+.bottom-cta__text {
+  font-size: var(--text-xs);
+  font-family: var(--font-sans);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+/* Large Desktop */
+@media (min-width: 1440px) {
+  .experience-horizontal__viewport {
+    padding: calc(80px + var(--space-lg)) var(--space-2xl) var(--space-md);
+  }
+}
+
+/* Tablet - Vertical fallback */
+@media (max-width: 1024px) {
+  .experience-horizontal {
+    height: auto; /* Remove artificial height for vertical layout */
+  }
+
+  .experience-horizontal__viewport {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    padding: calc(80px + var(--space-lg)) var(--space-lg) var(--space-lg);
+  }
+
+  .experience-horizontal__track {
+    flex-direction: column;
+    gap: var(--space-lg);
+    transform: none !important;
+  }
+
+  .experience-card,
+  .experience-card--wide {
+    width: 100%;
+  }
+
+  .experience-horizontal__progress {
+    display: none;
+  }
+
+  .experience-card {
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .experience-card__projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .education-card {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .education-card__content {
+    max-width: none;
+    order: 2;
+  }
+
+  .education-card__image {
+    order: 1;
+    justify-content: center;
+  }
+
+  .experience-footer__nav {
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: center;
+  }
+
+  .section-transition {
+    height: 200px;
+  }
+}
+
+/* Mobile - Single column layout */
+@media (max-width: 767px) {
+  .experience-horizontal__viewport {
+    padding: calc(80px + var(--space-lg)) var(--space-md) var(--space-md);
+  }
+
+  .experience-horizontal__track {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .experience-horizontal__header {
+    margin-bottom: var(--space-xl);
+    padding-left: 0;
+  }
+
+  .experience-horizontal__title {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+
+  .experience-card__projects {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .experience-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .experience-card__header .experience-card__company {
+    font-size: var(--text-lg);
+    order: 2;
+  }
+
+  .experience-card__header .experience-card__role {
+    font-size: var(--text-sm);
+    order: 3;
+    padding-left: 0;
+    border-left: none;
+    color: var(--color-text-muted);
+  }
+
+  .experience-card__logo {
+    order: 1;
+  }
+
+  .experience-card__meta {
+    order: 4;
+    text-align: left;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-left: 0;
+  }
+
+  /* Education section mobile */
+  .education-section--dark {
+    padding: var(--space-2xl) var(--space-md);
+  }
+
+  .education-card {
+    padding: var(--space-lg);
+  }
+
+  /* Footer mobile */
+  .experience-footer {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .experience-footer__header {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .stat-number {
+    font-size: clamp(4rem, 18vw, 6rem);
+  }
+
+  .experience-footer__nav {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .footer-nav__item {
+    flex-direction: row;
+    gap: var(--space-sm);
+  }
+
+  .cta-heading {
+    font-size: clamp(2.5rem, 14vw, 4rem);
+  }
+
+  .experience-footer__links {
+    flex-direction: column;
+    gap: var(--space-md);
+    align-items: center;
+  }
+
+  .section-transition {
+    height: 150px;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-horizontal__track {
+    transition: none;
+  }
+
+  .experience-footer__icon {
+    animation: none;
+  }
+
+  .scroll-line {
+    animation: none;
+  }
+
+  .experience-card:hover {
+    transform: none;
+  }
+
+  .cta-heading:hover {
+    transform: none;
+  }
+}

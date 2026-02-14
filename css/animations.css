@@ -1,0 +1,804 @@
+/* ==========================================================================
+   Animations & Transitions
+   ========================================================================== */
+
+/* ==========================================================================
+   Loading Screen
+   ========================================================================== */
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg, #EBEBEB);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loading-screen.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Loading text cursor */
+.loading-screen__cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10001;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--color-text-primary, #1C1C1C);
+  letter-spacing: 0.08em;
+  transform: translate(8px, 8px);
+  opacity: 0.85;
+}
+
+/* "Loading..." text - upper left */
+.loading-screen__text {
+  position: absolute;
+  top: 12%;
+  left: 12%;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 400;
+  color: var(--color-text-primary, #1C1C1C);
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.loading-screen.is-transitioning .loading-screen__text {
+  opacity: 0;
+}
+
+/* Tagline container */
+.loading-screen__tagline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+
+/* Initial state: taglines are centered together */
+.loading-screen__tagline-left,
+.loading-screen__tagline-right {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  font-weight: 400;
+  color: var(--color-text-primary, #1C1C1C);
+  white-space: nowrap;
+  transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1),
+              opacity 0.6s ease;
+}
+
+.loading-screen__tagline-left {
+  position: absolute;
+  left: 50%;
+  transform: translateX(calc(-100% - 0.25em));
+}
+
+.loading-screen__tagline-right {
+  position: absolute;
+  left: 50%;
+  transform: translateX(0.25em);
+}
+
+/* Split state: taglines move to edges */
+.loading-screen.is-split .loading-screen__tagline-left {
+  transform: translateX(calc(-50vw + 2rem));
+}
+
+.loading-screen.is-split .loading-screen__tagline-right {
+  transform: translateX(calc(50vw - 100% - 2rem));
+}
+
+/* Placeholder for animation/illustration */
+.loading-screen__placeholder {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease 0.3s, visibility 0.8s ease 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-screen.is-split .loading-screen__placeholder {
+  opacity: 1;
+  visibility: visible;
+}
+
+.loading-screen__lottie {
+  width: clamp(200px, 25vw, 320px);
+  height: clamp(200px, 25vw, 320px);
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-screen__lottie {
+    display: none;
+  }
+}
+
+/* Particle Canvas
+   ========================================================================== */
+.particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Keyframe Definitions
+   ========================================================================== */
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade In Up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In Down */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In Left */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade In Right */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide Up */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Slide Down */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Scale In */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Rotate In */
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0);
+  }
+}
+
+/* Draw Line (for SVG) */
+@keyframes drawLine {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Float */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Pulse */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Spin */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Bounce */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Word Reveal (for text animation) */
+@keyframes wordReveal {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Underline Grow */
+@keyframes underlineGrow {
+  from {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  to {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/* Scroll-Triggered Animation Classes
+   ========================================================================== */
+
+/* Base state for scroll animations - initially hidden */
+.animate-on-scroll {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.fade-in {
+  transform: translateY(0);
+}
+
+.animate-on-scroll.fade-in-up {
+  transform: translateY(30px);
+}
+
+.animate-on-scroll.fade-in-down {
+  transform: translateY(-30px);
+}
+
+.animate-on-scroll.fade-in-left {
+  transform: translateX(-30px);
+}
+
+.animate-on-scroll.fade-in-right {
+  transform: translateX(30px);
+}
+
+.animate-on-scroll.scale-in {
+  transform: scale(0.9);
+}
+
+/* Visible state - when element enters viewport */
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+/* Stagger Animation Delays
+   ========================================================================== */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+.stagger-6 { transition-delay: 0.6s; }
+.stagger-7 { transition-delay: 0.7s; }
+.stagger-8 { transition-delay: 0.8s; }
+
+/* Word-by-Word Text Animation
+   ========================================================================== */
+.word-animate {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.word-animate .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.word-animate.is-visible .word {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Generate staggered delays for words */
+.word-animate .word:nth-child(1) { transition-delay: 0.05s; }
+.word-animate .word:nth-child(2) { transition-delay: 0.1s; }
+.word-animate .word:nth-child(3) { transition-delay: 0.15s; }
+.word-animate .word:nth-child(4) { transition-delay: 0.2s; }
+.word-animate .word:nth-child(5) { transition-delay: 0.25s; }
+.word-animate .word:nth-child(6) { transition-delay: 0.3s; }
+.word-animate .word:nth-child(7) { transition-delay: 0.35s; }
+.word-animate .word:nth-child(8) { transition-delay: 0.4s; }
+.word-animate .word:nth-child(9) { transition-delay: 0.45s; }
+.word-animate .word:nth-child(10) { transition-delay: 0.5s; }
+
+/* Character Animation (for hero text) */
+.char-animate .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.char-animate.is-visible .char {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Number Count-up Animation
+   ========================================================================== */
+.count-up {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Page Transition
+   ========================================================================== */
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg);
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.page-transition.is-active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Loading Animation
+   ========================================================================== */
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.loader__dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-text-primary);
+  border-radius: 50%;
+  animation: loaderBounce 1.4s ease-in-out infinite both;
+}
+
+.loader__dot:nth-child(1) { animation-delay: -0.32s; }
+.loader__dot:nth-child(2) { animation-delay: -0.16s; }
+.loader__dot:nth-child(3) { animation-delay: 0; }
+
+@keyframes loaderBounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+/* Hover Animations
+   ========================================================================== */
+
+/* Link Hover - Underline */
+.hover-underline {
+  position: relative;
+}
+
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.hover-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Card Hover - Lift */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Hover - Scale */
+.hover-scale {
+  transition: transform 0.2s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-scale:active {
+  transform: scale(0.98);
+}
+
+/* Image Hover - Zoom */
+.hover-zoom {
+  overflow: hidden;
+}
+
+.hover-zoom img {
+  transition: transform 0.5s ease;
+}
+
+.hover-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* SVG Line Draw Animation
+   ========================================================================== */
+.svg-draw path,
+.svg-draw line,
+.svg-draw circle,
+.svg-draw rect {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 2s ease;
+}
+
+.svg-draw.is-visible path,
+.svg-draw.is-visible line,
+.svg-draw.is-visible circle,
+.svg-draw.is-visible rect {
+  stroke-dashoffset: 0;
+}
+
+/* Floating Decorative Elements
+   ========================================================================== */
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-animation-delayed {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Parallax Effect Classes
+   ========================================================================== */
+.parallax {
+  will-change: transform;
+}
+
+.parallax-slow {
+  --parallax-speed: 0.3;
+}
+
+.parallax-medium {
+  --parallax-speed: 0.5;
+}
+
+.parallax-fast {
+  --parallax-speed: 0.7;
+}
+
+/* Skills Category — title cycle: fade in → hold → fade out */
+@keyframes skill-title-cycle {
+  0%   { opacity: 0; transform: translateY(30px); filter: blur(4px); }
+  20%  { opacity: 1; transform: translateY(0);    filter: blur(0); }
+  65%  { opacity: 1; transform: translateY(0);    filter: blur(0); }
+  100% { opacity: 0; transform: translateY(-20px) scale(1.1); filter: blur(6px); }
+}
+
+/* Skills Item — assemble → hold organized → disperse outward with Z-zoom */
+@keyframes skill-item-cycle {
+  0% {
+    opacity: 0;
+    transform: translateZ(-400px) translate(0, 0) scale(0.7);
+    filter: blur(4px);
+  }
+  25% {
+    opacity: 1;
+    transform: translateZ(0) translate(0, 0) scale(1);
+    filter: blur(0);
+  }
+  65% {
+    opacity: 1;
+    transform: translateZ(0) translate(0, 0) scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateZ(200px)
+               translate(calc(var(--dx, 0) * 1px), calc(var(--dy, 0) * 1px))
+               scale(0.4);
+    filter: blur(5px);
+  }
+}
+
+/* Contact Hero — phrase cycling animation (Contact Page)
+   ========================================================================== */
+
+/*
+ * Cycle rhythm over a 9s total duration (3 phrases × 3s each):
+ *   0%   – invisible, slightly below
+ *   8%   – fully visible, settled
+ *   33%  – still visible (hold)
+ *   41%  – invisible, slightly above (exit)
+ *   100% – invisible (waiting for next cycle)
+ */
+@keyframes phrase-cycle {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  8% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  33% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  41% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Reduced motion: show all phrases stacked, no animation */
+@media (prefers-reduced-motion: reduce) {
+  .contact-hero__phrase {
+    animation: none;
+  }
+  .contact-hero__phrase--1 {
+    opacity: 1;
+    transform: none;
+  }
+  .contact-hero__phrase--2,
+  .contact-hero__phrase--3 {
+    display: none;
+  }
+}
+
+/* Zoom Scroll Animation (Project Page)
+   ========================================================================== */
+@keyframes zoom-scroll {
+  0% {
+    filter: blur(5rem);
+    transform: scale(0);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  50% {
+    filter: blur(0);
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    filter: blur(3rem);
+    transform: scale(1.5);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Reduce Motion Preference
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
+
+  .word-animate .word,
+  .char-animate .char {
+    opacity: 1;
+    transform: none;
+  }
+
+  .zoom-content {
+    animation: none;
+    opacity: 1;
+    visibility: visible;
+    filter: none;
+    transform: none;
+    position: relative;
+    inset: auto;
+  }
+
+  .zoom-section {
+    height: auto;
+    scroll-snap-align: none;
+  }
+
+  html:has(.page--projects) {
+    scroll-snap-type: none;
+  }
+
+  .skills-cycle-section {
+    height: auto;
+  }
+
+  .skills-category {
+    position: relative;
+    inset: auto;
+  }
+
+  .skills-category__inner {
+    padding: var(--space-2xl) var(--space-md);
+    perspective: none;
+  }
+
+  .skills-category__item {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+
+  .skills-category__title {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+
+  .skills-category__counter {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Initial Page Load Animation
+   ========================================================================== */
+.initial-load {
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.initial-load-delayed {
+  opacity: 0;
+  animation: fadeIn 0.6s ease 0.3s forwards;
+}
+
+/* Highlight Animation (for emphasized words) */
+.highlight {
+  position: relative;
+  display: inline;
+}
+
+.highlight::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background-color: rgba(28, 28, 28, 0.1);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+  z-index: -1;
+}
+
+.highlight.is-visible::before {
+  transform: scaleX(1);
+}

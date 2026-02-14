@@ -1,0 +1,44 @@
+# OS artifacts
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude CLI internals (not source code)
+.claude/
+.mcp.json
+
+# Playwright test artifacts
+.playwright-mcp/
+
+# Scratchpad / local notes (not website content)
+about.txt
+expereince.txt
+experience.txt
+project.txt
+skills.txt
+prompt.txt
+
+# Screenshot artifacts at project root (keep assets/images/)
+Screenshot*.png
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Temp
+*.tmp
+*.temp
+*.bak

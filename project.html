@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projects - Girish Naik's portfolio of work and skills">
+  <title>Projects - Girish Naik</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>*</text></svg>">
+</head>
+<body class="page--projects">
+  <!-- Full-Page Fog Background -->
+  <div id="fogBg" class="fog-background"></div>
+
+  <!-- Page Transition Overlay -->
+  <div class="page-transition" id="pageTransition"></div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header__inner">
+        <div class="header__left">
+          <div class="header__status">
+            <span class="header__status-dot"></span>
+            <span>Available for work</span>
+          </div>
+        </div>
+
+        <a href="index.html" class="header__logo">Girish Naik</a>
+
+        <div class="header__right flex items-center gap-md">
+          <span class="header__version">v.2025</span>
+
+          <nav class="nav" id="mainNav">
+            <a href="about.html" class="nav__link">About</a>
+            <a href="experience.html" class="nav__link">Experience</a>
+            <a href="project.html" class="nav__link nav__link--active">Project</a>
+            <a href="contact.html" class="nav__link">Contact</a>
+          </nav>
+
+          <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <span class="nav__toggle-bar"></span>
+            <span class="nav__toggle-bar"></span>
+            <span class="nav__toggle-bar"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Page Header -->
+    <section class="page-header section" id="projectHero">
+      <div class="container">
+        <h1 class="page-header__title animate-on-scroll fade-in-up">
+          My <span class="text-italic">Projects</span>
+        </h1>
+        <p class="page-header__subtitle animate-on-scroll fade-in-up stagger-2">
+          A selection of work that showcases my skills and passion for creating digital experiences.
+        </p>
+      </div>
+    </section>
+
+    <!-- Featured Projects — Zoom Scroll -->
+    <section class="zoom-section">
+      <div class="zoom-content">
+        <div class="zoom-card">
+          <div class="zoom-card__corner zoom-card__corner--tl"></div>
+          <div class="zoom-card__corner zoom-card__corner--tr"></div>
+          <div class="zoom-card__corner zoom-card__corner--bl"></div>
+          <div class="zoom-card__corner zoom-card__corner--br"></div>
+          <div class="zoom-card__header">
+            <span class="zoom-card__number">01</span>
+            <span class="zoom-card__category">Autonomous Research &amp; Agentic Workflows</span>
+          </div>
+          <h2 class="zoom-card__title">AI Research Agent</h2>
+          <p class="zoom-card__subtitle">Autonomous Developer Tool Discovery</p>
+          <p class="zoom-card__description">
+            An autonomous, multi-stage agentic system that replaces manual tool evaluation with a Dual-Agent approach. Simple Agent using the ReAct pattern for rapid responses, and an Advanced Agent employing LangGraph's StateGraph for deterministic research paths.
+          </p>
+          <ul class="zoom-card__highlights">
+            <li>Dual-Agent: ReAct pattern + LangGraph StateGraph orchestration</li>
+            <li>Three-Stage Pipeline: Extraction &rarr; Deep Research &rarr; Analysis</li>
+            <li>Pydantic models for strict data contracts, eliminating hallucinated structures</li>
+            <li>Firecrawl integration for JS-heavy documentation scraping</li>
+          </ul>
+          <div class="zoom-card__tags">
+            <span class="zoom-card__tag">LangGraph</span>
+            <span class="zoom-card__tag">ReAct</span>
+            <span class="zoom-card__tag">Pydantic</span>
+            <span class="zoom-card__tag">Firecrawl</span>
+          </div>
+          <a href="https://github.com/GirishNaik711/Agentic-AI-Researcher" class="zoom-card__link" target="_blank" rel="noopener">
+            <span class="zoom-card__link-deco zoom-card__link-deco--left"></span>
+            <span class="zoom-card__link-deco zoom-card__link-deco--right"></span>
+            View on GitHub &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="zoom-section">
+      <div class="zoom-content">
+        <div class="zoom-card">
+          <div class="zoom-card__corner zoom-card__corner--tl"></div>
+          <div class="zoom-card__corner zoom-card__corner--tr"></div>
+          <div class="zoom-card__corner zoom-card__corner--bl"></div>
+          <div class="zoom-card__corner zoom-card__corner--br"></div>
+          <div class="zoom-card__header">
+            <span class="zoom-card__number">02</span>
+            <span class="zoom-card__category">Autonomous Research &amp; Agentic Workflows</span>
+          </div>
+          <h2 class="zoom-card__title">AI Trip Planner</h2>
+          <p class="zoom-card__subtitle">Multi-Tool Agentic Orchestrator</p>
+          <p class="zoom-card__description">
+            A consumer-facing agent that synthesizes real-time data from disparate APIs into a cohesive, personalized travel strategy, implementing a hybrid LLM approach with Groq for low-latency inference and OpenAI as a high-reliability fallback.
+          </p>
+          <ul class="zoom-card__highlights">
+            <li>Multi-Provider: Groq (DeepSeek R1 Distill Llama 70B) + OpenAI fallback</li>
+            <li>Intent classification via lightweight GPT-3.5 pass for API quota protection</li>
+            <li>Stateful memory: UUID sessions with sliding window (last 5 messages)</li>
+            <li>10+ specialized tools with automatic fallback on failure</li>
+          </ul>
+          <div class="zoom-card__tags">
+            <span class="zoom-card__tag">Groq</span>
+            <span class="zoom-card__tag">OpenAI</span>
+            <span class="zoom-card__tag">Google Places</span>
+            <span class="zoom-card__tag">LangChain</span>
+          </div>
+          <a href="https://github.com/GirishNaik711/AiTripPlanner" class="zoom-card__link" target="_blank" rel="noopener">
+            <span class="zoom-card__link-deco zoom-card__link-deco--left"></span>
+            <span class="zoom-card__link-deco zoom-card__link-deco--right"></span>
+            View on GitHub &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="zoom-section">
+      <div class="zoom-content">
+        <div class="zoom-card">
+          <div class="zoom-card__corner zoom-card__corner--tl"></div>
+          <div class="zoom-card__corner zoom-card__corner--tr"></div>
+          <div class="zoom-card__corner zoom-card__corner--bl"></div>
+          <div class="zoom-card__corner zoom-card__corner--br"></div>
+          <div class="zoom-card__header">
+            <span class="zoom-card__number">03</span>
+            <span class="zoom-card__category">Foundational LLM Development &amp; NLP</span>
+          </div>
+          <h2 class="zoom-card__title">GPT From Scratch</h2>
+          <p class="zoom-card__subtitle">First-Principles Transformer Implementation</p>
+          <p class="zoom-card__description">
+            A deep-dive into the mathematical and structural foundations of GPT using PyTorch implementing scaled dot-product attention, causal masking, and a 10M-parameter transformer trained on Shakespearean prose from first principles.
+          </p>
+          <ul class="zoom-card__highlights">
+            <li>Self-Attention with scaled dot-product and causal masking from scratch</li>
+            <li>6-layer Transformer with Multi-Head Attention (6 heads) and Pre-LayerNorm</li>
+            <li>10M parameters, 384-dim embeddings, 256-token context window</li>
+            <li>GPT-2 weight initialization and AdamW optimizer with dropout</li>
+          </ul>
+          <div class="zoom-card__tags">
+            <span class="zoom-card__tag">PyTorch</span>
+            <span class="zoom-card__tag">Transformers</span>
+            <span class="zoom-card__tag">Self-Attention</span>
+            <span class="zoom-card__tag">NLP</span>
+          </div>
+          <a href="https://github.com/GirishNaik711/GPT_from_scratch" class="zoom-card__link" target="_blank" rel="noopener">
+            <span class="zoom-card__link-deco zoom-card__link-deco--left"></span>
+            <span class="zoom-card__link-deco zoom-card__link-deco--right"></span>
+            View on GitHub &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="zoom-section">
+      <div class="zoom-content">
+        <div class="zoom-card">
+          <div class="zoom-card__corner zoom-card__corner--tl"></div>
+          <div class="zoom-card__corner zoom-card__corner--tr"></div>
+          <div class="zoom-card__corner zoom-card__corner--bl"></div>
+          <div class="zoom-card__corner zoom-card__corner--br"></div>
+          <div class="zoom-card__header">
+            <span class="zoom-card__number">04</span>
+            <span class="zoom-card__category">Foundational LLM Development &amp; NLP</span>
+          </div>
+          <h2 class="zoom-card__title">WhatsApp Chat LM</h2>
+          <p class="zoom-card__subtitle">Tokenization &amp; Fine-Tuning Pipeline</p>
+          <p class="zoom-card__description">
+            An end-to-end NLP project focusing on custom BPE tokenization and model specialization implementing a tokenizer library from scratch with support for GPT-4 patterns, UTF-8, and complex emoji handling.
+          </p>
+          <ul class="zoom-card__highlights">
+            <li>Custom BPE Tokenizer: Basic, Regex-based, and UTF-8 variants</li>
+            <li>Three fine-tuning strategies: Standard, Context-Free, and LoRA</li>
+            <li>LoRA adaptation for style transfer with minimal compute</li>
+            <li>Pandas pipeline for cleaning raw WhatsApp exports</li>
+          </ul>
+          <div class="zoom-card__tags">
+            <span class="zoom-card__tag">BPE</span>
+            <span class="zoom-card__tag">LoRA</span>
+            <span class="zoom-card__tag">Fine-Tuning</span>
+            <span class="zoom-card__tag">NLP</span>
+          </div>
+          <a href="https://github.com/GirishNaik711/Whatsapp_bot" class="zoom-card__link" target="_blank" rel="noopener">
+            <span class="zoom-card__link-deco zoom-card__link-deco--left"></span>
+            <span class="zoom-card__link-deco zoom-card__link-deco--right"></span>
+            View on GitHub &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="zoom-section">
+      <div class="zoom-content">
+        <div class="zoom-card">
+          <div class="zoom-card__corner zoom-card__corner--tl"></div>
+          <div class="zoom-card__corner zoom-card__corner--tr"></div>
+          <div class="zoom-card__corner zoom-card__corner--bl"></div>
+          <div class="zoom-card__corner zoom-card__corner--br"></div>
+          <div class="zoom-card__header">
+            <span class="zoom-card__number">05</span>
+            <span class="zoom-card__category">Production-Grade Backend &amp; Infrastructure</span>
+          </div>
+          <h2 class="zoom-card__title">Social Media REST API</h2>
+          <p class="zoom-card__subtitle">DevOps &amp; CI/CD Focused Backend</p>
+          <p class="zoom-card__description">
+            A robust, scalable API built with FastAPI and PostgreSQL, showcasing the full software development lifecycle from JWT authentication and containerization to automated CI/CD pipelines and production deployment.
+          </p>
+          <ul class="zoom-card__highlights">
+            <li>JWT authentication with bcrypt hashing and role-based access control</li>
+            <li>Optimized multi-stage Docker builds for minimal production images</li>
+            <li>GitHub Actions CI/CD with dedicated Postgres test containers</li>
+            <li>Nginx reverse proxy with SSL termination and Gunicorn/Uvicorn workers</li>
+          </ul>
+          <div class="zoom-card__tags">
+            <span class="zoom-card__tag">FastAPI</span>
+            <span class="zoom-card__tag">PostgreSQL</span>
+            <span class="zoom-card__tag">Docker</span>
+            <span class="zoom-card__tag">CI/CD</span>
+          </div>
+          <a href="https://github.com/GirishNaik711/py_development" class="zoom-card__link" target="_blank" rel="noopener">
+            <span class="zoom-card__link-deco zoom-card__link-deco--left"></span>
+            <span class="zoom-card__link-deco zoom-card__link-deco--right"></span>
+            View on GitHub &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="zoom-section">
+      <div class="zoom-content">
+        <div class="zoom-card">
+          <div class="zoom-card__corner zoom-card__corner--tl"></div>
+          <div class="zoom-card__corner zoom-card__corner--tr"></div>
+          <div class="zoom-card__corner zoom-card__corner--bl"></div>
+          <div class="zoom-card__corner zoom-card__corner--br"></div>
+          <div class="zoom-card__header">
+            <span class="zoom-card__number">06</span>
+            <span class="zoom-card__category">Production-Grade Backend &amp; Infrastructure</span>
+          </div>
+          <h2 class="zoom-card__title">Pizza Delivery Backend</h2>
+          <p class="zoom-card__subtitle">RBAC &amp; State Management</p>
+          <p class="zoom-card__description">
+            A domain-specific API designed to demonstrate strict Role-Based Access Control and order state transitions with middleware-level role checks isolating Staff and Customer endpoints.
+          </p>
+          <ul class="zoom-card__highlights">
+            <li>Middleware-level RBAC distinguishing Staff vs Customer roles</li>
+            <li>Order state machine: Pending &rarr; In-Transit &rarr; Delivered</li>
+            <li>One-to-many User-Order relationships with integrity constraints</li>
+            <li>RESTful design with OpenAPI/Swagger documentation</li>
+          </ul>
+          <div class="zoom-card__tags">
+            <span class="zoom-card__tag">FastAPI</span>
+            <span class="zoom-card__tag">SQLAlchemy</span>
+            <span class="zoom-card__tag">RBAC</span>
+            <span class="zoom-card__tag">REST</span>
+          </div>
+          <a href="https://github.com/GirishNaik711/pizza_delivery_BE" class="zoom-card__link" target="_blank" rel="noopener">
+            <span class="zoom-card__link-deco zoom-card__link-deco--left"></span>
+            <span class="zoom-card__link-deco zoom-card__link-deco--right"></span>
+            View on GitHub &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Showcase — Fixed Cycling Categories (5×100vh) -->
+    <!-- Each category appears in the same viewport position, cycling as you scroll -->
+
+    <section class="skills-cycle-section">
+      <div class="skills-category">
+        <div class="skills-category__inner">
+          <span class="skills-category__counter">01 / 04</span>
+          <h3 class="skills-category__title">Languages</h3>
+          <div class="skills-category__grid">
+            <span class="skills-category__item">Python</span>
+            <span class="skills-category__item">AWS</span>
+            <span class="skills-category__item">Azure</span>
+            <span class="skills-category__item">Databricks</span>
+            <span class="skills-category__item">SQL</span>
+            <span class="skills-category__item">OOP</span>
+            <span class="skills-category__item">ETL</span>
+            <span class="skills-category__item">EDA</span>
+            <span class="skills-category__item">Kubernetes</span>
+            <span class="skills-category__item">FastAPI</span>
+            <span class="skills-category__item">CI/CD</span>
+            <span class="skills-category__item">RDBMS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="skills-cycle-section">
+      <div class="skills-category">
+        <div class="skills-category__inner">
+          <span class="skills-category__counter">02 / 04</span>
+          <h3 class="skills-category__title">Libraries</h3>
+          <div class="skills-category__grid">
+            <span class="skills-category__item">LangGraph</span>
+            <span class="skills-category__item">PyTorch</span>
+            <span class="skills-category__item">LangChain</span>
+            <span class="skills-category__item">OpenAI</span>
+            <span class="skills-category__item">Ollama</span>
+            <span class="skills-category__item">NumPy</span>
+            <span class="skills-category__item">Scikit-learn</span>
+            <span class="skills-category__item">Keras</span>
+            <span class="skills-category__item">Pandas</span>
+            <span class="skills-category__item">Matplotlib</span>
+            <span class="skills-category__item">HuggingFace</span>
+            <span class="skills-category__item">OpenCV</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="skills-cycle-section">
+      <div class="skills-category">
+        <div class="skills-category__inner">
+          <span class="skills-category__counter">03 / 04</span>
+          <h3 class="skills-category__title">AI Domains</h3>
+          <div class="skills-category__grid">
+            <span class="skills-category__item">Deep Learning</span>
+            <span class="skills-category__item">NLP</span>
+            <span class="skills-category__item">Random Forest</span>
+            <span class="skills-category__item">Regression</span>
+            <span class="skills-category__item">RNNs</span>
+            <span class="skills-category__item">SVMs</span>
+            <span class="skills-category__item">KNN</span>
+            <span class="skills-category__item">K-means</span>
+            <span class="skills-category__item">LSTM</span>
+            <span class="skills-category__item">Graph RAG</span>
+            <span class="skills-category__item">Computer Vision</span>
+            <span class="skills-category__item">Agentic Workflows</span>
+            <span class="skills-category__item">Voice RAG</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="skills-cycle-section">
+      <div class="skills-category">
+        <div class="skills-category__inner">
+          <span class="skills-category__counter">04 / 04</span>
+          <h3 class="skills-category__title">Tools</h3>
+          <div class="skills-category__grid">
+            <span class="skills-category__item">LLMs</span>
+            <span class="skills-category__item">Claude Code</span>
+            <span class="skills-category__item">Cursor</span>
+            <span class="skills-category__item">n8n</span>
+            <span class="skills-category__item">MCP</span>
+            <span class="skills-category__item">MLflow</span>
+            <span class="skills-category__item">Docker</span>
+            <span class="skills-category__item">Flask</span>
+            <span class="skills-category__item">Git</span>
+            <span class="skills-category__item">Linux</span>
+            <span class="skills-category__item">VS Code</span>
+            <span class="skills-category__item">Self-hosting</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="section section--large">
+      <div class="container">
+        <div class="contact-cta animate-on-scroll fade-in-up">
+          <span class="contact-cta__label">Have a project in mind?</span>
+          <a href="contact.html">
+            <h2 class="contact-cta__heading">Let's Work Together</h2>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Art Deco Footer Content -->
+    <section class="section footer-deco-section">
+      <div class="container">
+        <div class="footer-deco">
+          <div class="footer-deco__ornament">
+            <span class="footer-deco__diamond"></span>
+            <span class="footer-deco__line"></span>
+            <span class="footer-deco__diamond"></span>
+          </div>
+
+          <p class="footer-deco__name">Girish Naik</p>
+          <p class="footer-deco__role">Digital Designer &amp; Developer</p>
+
+          <nav class="footer-deco__links">
+            <a href="https://github.com/GirishNaik711" class="footer-deco__link" target="_blank" rel="noopener">GitHub</a>
+            <span class="footer-deco__sep">&middot;</span>
+            <a href="https://www.linkedin.com/in/girish-naik711/" class="footer-deco__link" target="_blank" rel="noopener">LinkedIn</a>
+            <span class="footer-deco__sep">&middot;</span>
+            <a href="contact.html" class="footer-deco__link">Contact</a>
+          </nav>
+
+          <p class="footer-deco__copy">&copy; 2025 All rights reserved</p>
+
+          <div class="footer-deco__ornament">
+            <span class="footer-deco__diamond"></span>
+            <span class="footer-deco__line"></span>
+            <span class="footer-deco__diamond"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab Navigation -->
+    <section class="section">
+      <div class="container">
+        <nav class="tab-nav">
+          <a href="index.html" class="tab-nav__item">Home</a>
+          <a href="about.html" class="tab-nav__item">About</a>
+          <a href="experience.html" class="tab-nav__item">Experience</a>
+          <a href="project.html" class="tab-nav__item tab-nav__item--active">Project</a>
+          <a href="contact.html" class="tab-nav__item">Contact</a>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/animations.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Vanta Fog Effect -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="fog.min.js"></script>
+  <script>
+    (function() {
+      var fogEffect = (typeof VANTA !== 'undefined' && VANTA.FOG) || (_vantaEffect && _vantaEffect.default);
+      if (!fogEffect) return;
+      var fogEl = document.getElementById('fogBg');
+      if (!fogEl) return;
+      fogEffect({
+        el: fogEl,
+        THREE: THREE,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        highlightColor: 0x555555,
+        midtoneColor: 0x333333,
+        lowlightColor: 0x1a1a1a,
+        baseColor: 0x0a0a0a,
+        blurFactor: 0.6,
+        speed: 1.0,
+        zoom: 0.8
+      });
+    })();
+  </script>
+</body>
+</html>

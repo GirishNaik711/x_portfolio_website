@@ -1,0 +1,13 @@
+# Normalize line endings to LF in the repo, checkout as-is
+* text=auto eol=lf
+
+# Binary files — don't touch
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg binary
+*.mp4 binary
+*.woff binary
+*.woff2 binary
+*.min.js binary
