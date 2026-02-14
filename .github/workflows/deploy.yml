@@ -1,21 +1,23 @@
-name: Deploy Portfolio
+name: Deploy to Server
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - name: Deploy via rsync
-        uses: easingthemes/ssh-deploy@v5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
-          REMOTE_USER: ${{ secrets.SERVER_USER }}
-          SOURCE: "./"
-          TARGET: "/var/www/portfolio"
-          EXCLUDE: ".git/, .github/, .claude/, .playwright-mcp/, *.txt, .gitignore, CLAUDE.md"
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/portfolio
+            git pull origin main || git clone https://github.com/GirishNaik711/x_portfolio_website .
