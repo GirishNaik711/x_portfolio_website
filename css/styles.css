@@ -1816,6 +1816,12 @@ html:has(.page--projects) {
   animation-timeline: --zoom-section;
 }
 
+.zoom-content.is-active {
+  pointer-events: auto;
+  /* Override the animation's visibility: hidden at the fill boundaries */
+  visibility: visible;
+}
+
 /* Non-zoom sections sit above the fixed zoom content */
 .page--projects .section:not(.zoom-section):not(.page-header),
 .page--projects .footer {
@@ -1881,8 +1887,14 @@ html:has(.page--projects) {
   /* Elevate card above fog with shadow and subtle backdrop blur */
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(4px);
-  /* Re-enable pointer events on the card — overrides parent's pointer-events: none */
-  pointer-events: auto;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.zoom-card:hover {
+  border-color: var(--color-deco-text);
+  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.65), 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .zoom-card__header {
@@ -1981,74 +1993,6 @@ html:has(.page--projects) {
   font-family: var(--font-mono);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-}
-
-.zoom-card__link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-serif);
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-  color: var(--color-deco-text);
-  text-decoration: none;
-  letter-spacing: var(--tracking-wide);
-  border-top: 1px solid var(--color-deco-border);
-  border-bottom: 1px solid var(--color-deco-border);
-  height: 2rem;
-  padding: 0 var(--space-sm);
-  position: relative;
-  margin: 0 2rem;
-  cursor: pointer;
-  transition: background var(--transition-fast);
-}
-
-.zoom-card__link:hover {
-  background: var(--color-deco-btn-hover);
-}
-
-/* Link diamond decorations */
-.zoom-card__link-deco {
-  position: absolute;
-  width: 1.45rem;
-  height: 1.45rem;
-  border-bottom: 1px solid var(--color-deco-border);
-  border-left: 1px solid var(--color-deco-border);
-  transition: background var(--transition-fast);
-}
-
-.zoom-card__link-deco::before {
-  content: '';
-  width: 0.75rem;
-  height: 0.75rem;
-  border: 1px solid var(--color-deco-border);
-  position: absolute;
-  top: calc(1rem - 1px);
-  left: calc(-0.4rem - 1px);
-}
-
-.zoom-card__link-deco::after {
-  content: '';
-  width: 0.5rem;
-  height: 0.5rem;
-  background: var(--color-deco-border);
-  position: absolute;
-  top: calc(1rem - 1px);
-  left: -1px;
-}
-
-.zoom-card__link-deco--left {
-  left: -0.75rem;
-  transform: rotate(45deg);
-}
-
-.zoom-card__link-deco--right {
-  right: -0.75rem;
-  transform: rotate(-135deg);
-}
-
-.zoom-card__link:hover .zoom-card__link-deco {
-  background: var(--color-deco-btn-hover);
 }
 
 /* Art Deco Corner Ornaments
@@ -2249,6 +2193,7 @@ html:has(.page--projects) {
   perspective: 800px;
   transform-style: preserve-3d;
   overflow: clip;
+  pointer-events: none;
 }
 
 /* Inner wrapper no longer needs sticky positioning */
@@ -2497,16 +2442,6 @@ html:has(.page--projects) {
   .zoom-card__corner::before {
     width: calc(0.7rem - 1px);
     height: 1.25rem;
-  }
-
-  .zoom-card__link {
-    margin: 0 1.5rem;
-    font-size: var(--text-xs);
-  }
-
-  .zoom-card__link-deco {
-    width: 1.1rem;
-    height: 1.1rem;
   }
 
   .zoom-content {

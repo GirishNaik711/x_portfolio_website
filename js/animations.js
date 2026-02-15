@@ -345,9 +345,43 @@ const Animations = (function() {
       ParticleNetwork.init();
     }
 
+    initZoomCardPointerEvents();
+
     // Optional: Enable these if you want the effects
     // initParallax();
     // initTiltEffect();
+  }
+
+  /**
+   * Enable pointer events only on the currently visible zoom card.
+   * All .zoom-card elements share the same fixed viewport position, so
+   * without this, the last card in DOM order intercepts all clicks.
+   */
+  function initZoomCardPointerEvents() {
+    var sections = document.querySelectorAll('.zoom-section');
+    if (!sections.length) return;
+
+    function updateActive() {
+      var vh = window.innerHeight;
+      sections.forEach(function(section) {
+        var content = section.querySelector('.zoom-content');
+        if (!content) return;
+        var rect = section.getBoundingClientRect();
+        // Section occupying more than half the viewport = active
+        var visible = Math.min(rect.bottom, vh) - Math.max(rect.top, 0);
+        if (visible / vh > 0.5) {
+          content.classList.add('is-active');
+        } else {
+          content.classList.remove('is-active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActive, { passive: true });
+    // scrollend fires once snap animation settles — catches cases where
+    // the final scroll position doesn't trigger another 'scroll' event
+    window.addEventListener('scrollend', updateActive, { passive: true });
+    updateActive(); // Immediate call — handles page-load state synchronously
   }
 
   // Public API
