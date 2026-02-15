@@ -25,4 +25,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /var/www/portfolio
-            git pull origin main || git clone https://github.com/GirishNaik711/x_portfolio_website .
+            git pull origin main
