@@ -9,9 +9,9 @@
   // ---------------------------------------------------------------------------
   // EmailJS credentials — Replace with your EmailJS credentials
   // ---------------------------------------------------------------------------
-  var EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // Replace with your EmailJS credentials
-  var EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // Replace with your EmailJS credentials
-  var EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // Replace with your EmailJS credentials
+  var EMAILJS_SERVICE_ID  = 'Yservice_ycguo1b';   // Replace with your EmailJS credentials
+  var EMAILJS_TEMPLATE_ID = 'template_a6eqmde';  // Replace with your EmailJS credentials
+  var EMAILJS_PUBLIC_KEY  = 'VdeX-G4miDBt49Ur9';   // Replace with your EmailJS credentials
 
   /**
    * Homepage Navigation Hover Effect
