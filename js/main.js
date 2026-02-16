@@ -9,7 +9,7 @@
   // ---------------------------------------------------------------------------
   // EmailJS credentials — Replace with your EmailJS credentials
   // ---------------------------------------------------------------------------
-  var EMAILJS_SERVICE_ID  = 'Yservice_ycguo1b';   // Replace with your EmailJS credentials
+  var EMAILJS_SERVICE_ID  = 'service_ycguo1b';   // Replace with your EmailJS credentials
   var EMAILJS_TEMPLATE_ID = 'template_a6eqmde';  // Replace with your EmailJS credentials
   var EMAILJS_PUBLIC_KEY  = 'VdeX-G4miDBt49Ur9';   // Replace with your EmailJS credentials
 
