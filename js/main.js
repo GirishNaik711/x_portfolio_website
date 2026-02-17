@@ -98,13 +98,13 @@
           var response = await fetch(WEBHOOK_URL, {
             method: 'POST',
             headers: {
-              'Content-Type': 'text/plain'
+              'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              name:    form.name.value,
-              email:   form.email.value,
-              subject: form.subject.value,
-              message: form.message.value
+              name:    form.elements['name'].value,
+              email:   form.elements['email'].value,
+              subject: form.elements['subject'].value,
+              message: form.elements['message'].value
             })
           });
 
