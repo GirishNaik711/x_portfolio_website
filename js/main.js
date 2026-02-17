@@ -7,11 +7,9 @@
   'use strict';
 
   // ---------------------------------------------------------------------------
-  // EmailJS credentials — Replace with your EmailJS credentials
+  // n8n webhook endpoint for contact form submissions
   // ---------------------------------------------------------------------------
-  var EMAILJS_SERVICE_ID  = 'service_ycguo1b';   // Replace with your EmailJS credentials
-  var EMAILJS_TEMPLATE_ID = 'template_a6eqmde';  // Replace with your EmailJS credentials
-  var EMAILJS_PUBLIC_KEY  = 'VdeX-G4miDBt49Ur9';   // Replace with your EmailJS credentials
+  var WEBHOOK_URL = 'https://n8n.vartamanai.com/webhook/contact';
 
   /**
    * Homepage Navigation Hover Effect
@@ -56,11 +54,6 @@
    * Initialize application when DOM is ready
    */
   function init() {
-    // Initialize EmailJS SDK
-    if (typeof emailjs !== 'undefined') {
-      emailjs.init(EMAILJS_PUBLIC_KEY);
-    }
-
     // Initialize homepage navigation
     HomeNav.init();
 
@@ -84,48 +77,51 @@
   }
 
   /**
-   * Handle form submissions via EmailJS
+   * Handle form submissions via n8n webhook
    */
   function initFormHandling() {
     const forms = document.querySelectorAll('form');
 
-    forms.forEach(form => {
-      form.addEventListener('submit', (e) => {
+    forms.forEach(function(form) {
+      form.addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        const submitBtn = form.querySelector('[type="submit"]');
-        const originalLabel = submitBtn ? submitBtn.textContent : null;
+        var submitBtn = form.querySelector('[type="submit"]');
+        var originalText = submitBtn ? submitBtn.textContent : '';
 
-        // Disable button to prevent double-submission
         if (submitBtn) {
           submitBtn.disabled = true;
           submitBtn.textContent = 'Sending...';
         }
 
-        // Guard: fall back gracefully if EmailJS was not loaded
-        if (typeof emailjs === 'undefined') {
-          showNotification('Email service unavailable. Please try again later.', 'error');
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalLabel;
-          }
-          return;
-        }
+        try {
+          var response = await fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'text/plain'
+            },
+            body: JSON.stringify({
+              name:    form.name.value,
+              email:   form.email.value,
+              subject: form.subject.value,
+              message: form.message.value
+            })
+          });
 
-        emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
-          .then(function() {
+          if (response.ok) {
             showNotification('Message sent successfully!', 'success');
             form.reset();
-          })
-          .catch(function() {
+          } else {
             showNotification('Failed to send. Please try again.', 'error');
-          })
-          .finally(function() {
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.textContent = originalLabel;
-            }
-          });
+          }
+        } catch (err) {
+          showNotification('Failed to send. Please try again.', 'error');
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          }
+        }
       });
     });
   }
