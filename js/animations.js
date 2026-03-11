@@ -243,8 +243,11 @@ const Animations = (function() {
     const transition = document.getElementById('pageTransition');
     if (!transition) return;
 
-    // Fade out on page load
+    // Fade out on page load (and BFCache restore on back/forward navigation)
     window.addEventListener('load', () => {
+      transition.classList.remove('is-active');
+    });
+    window.addEventListener('pageshow', () => {
       transition.classList.remove('is-active');
     });
 
