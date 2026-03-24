@@ -247,8 +247,15 @@ const Animations = (function() {
     window.addEventListener('load', () => {
       transition.classList.remove('is-active');
     });
-    window.addEventListener('pageshow', () => {
-      transition.classList.remove('is-active');
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) {
+        // BFCache restore: bypass CSS transition so overlay vanishes instantly
+        transition.style.transition = 'none';
+        transition.classList.remove('is-active');
+        requestAnimationFrame(() => { transition.style.transition = ''; });
+      } else {
+        transition.classList.remove('is-active');
+      }
     });
 
     // Fade in before navigating
@@ -265,6 +272,13 @@ const Animations = (function() {
         setTimeout(() => {
           window.location.href = href;
         }, 300);
+
+        // Safety: remove overlay if navigation fails or stalls
+        const safetyTimer = setTimeout(() => {
+          transition.classList.remove('is-active');
+        }, 1500);
+        // Clear safety timer once navigation fires
+        setTimeout(() => { clearTimeout(safetyTimer); }, 350);
       });
     });
   }

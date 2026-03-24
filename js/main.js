@@ -60,9 +60,20 @@
       audio.preload = 'auto';
 
       document.querySelectorAll('.zoom-card').forEach(card => {
-        card.addEventListener('click', () => {
+        card.addEventListener('click', (e) => {
+          const href = card.getAttribute('href');
+          if (!href) return;
+
+          e.preventDefault();
+
+          // Play sound (page stays alive so audio is not interrupted)
           audio.currentTime = 0;
           audio.play().catch(() => {});
+
+          // Open GitHub in new tab after brief delay so sound starts first
+          setTimeout(() => {
+            window.open(href, '_blank', 'noopener');
+          }, 150);
         });
       });
     }
@@ -93,8 +104,7 @@
     initAccessibility();
     ZoomCardSound.init();
 
-    // Log initialization (remove in production)
-    console.log('Portfolio initialized');
+
   }
 
   /**
@@ -156,10 +166,14 @@
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification--${type}`;
-    notification.innerHTML = `
-      <span>${message}</span>
-      <button class="notification__close" aria-label="Close">&times;</button>
-    `;
+    const msgSpan = document.createElement('span');
+    msgSpan.textContent = message;
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'notification__close';
+    closeBtn.setAttribute('aria-label', 'Close');
+    closeBtn.textContent = '\u00d7';
+    notification.appendChild(msgSpan);
+    notification.appendChild(closeBtn);
 
     // Add styles dynamically
     notification.style.cssText = `
@@ -208,7 +222,6 @@
     document.body.appendChild(notification);
 
     // Close button handler
-    const closeBtn = notification.querySelector('.notification__close');
     closeBtn.addEventListener('click', () => {
       removeNotification(notification);
     });
