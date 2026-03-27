@@ -614,6 +614,18 @@
   }
 }
 
+/* Projects Grid Responsive
+   ========================================================================== */
+.projects-row {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .projects-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* Contact Page Responsive
    ========================================================================== */
 .contact-reach {

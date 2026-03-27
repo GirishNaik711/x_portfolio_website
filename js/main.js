@@ -51,37 +51,6 @@
   })();
 
   /**
-   * Project Card Sound Effect
-   * Plays a sound when any .zoom-card is clicked
-   */
-  const ZoomCardSound = (function () {
-    function init() {
-      const audio = new Audio('assets/sounds/Fahh_-_Sound_Effect_SowaSFX_128kbps.mp4');
-      audio.preload = 'auto';
-
-      document.querySelectorAll('.zoom-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-          const href = card.getAttribute('href');
-          if (!href) return;
-
-          e.preventDefault();
-
-          // Play sound (page stays alive so audio is not interrupted)
-          audio.currentTime = 0;
-          audio.play().catch(() => {});
-
-          // Open GitHub in new tab after brief delay so sound starts first
-          setTimeout(() => {
-            window.open(href, '_blank', 'noopener');
-          }, 150);
-        });
-      });
-    }
-
-    return { init };
-  })();
-
-  /**
    * Initialize application when DOM is ready
    */
   function init() {
@@ -102,7 +71,6 @@
     initFormHandling();
     initLazyLoading();
     initAccessibility();
-    ZoomCardSound.init();
 
 
   }

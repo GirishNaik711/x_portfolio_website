@@ -1742,10 +1742,9 @@ p {
 /* Zoom Scroll Projects
    ========================================================================== */
 
-/* Scope scroll-snap and timeline to the project page */
+/* Project page scoping */
 html:has(.page--projects) {
-  scroll-snap-type: y proximity;
-  timeline-scope: --zoom-section;
+  scroll-snap-type: none;
 }
 
 /* Full-page fog background layer */
@@ -1760,7 +1759,6 @@ html:has(.page--projects) {
   min-height: 100dvh;
   display: flex;
   align-items: center;
-  scroll-snap-align: start;
   position: relative;
   z-index: 2;
   background-color: transparent;
@@ -1787,43 +1785,29 @@ html:has(.page--projects) {
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Each project section — full viewport, snaps, powers the timeline */
-.zoom-section {
-  height: 100dvh;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  view-timeline: --zoom-section;
+/* Projects grid section — sits above fog layer */
+.projects-grid-section {
+  position: relative;
+  z-index: 2;
 }
 
-/* Fixed content layer — stacks on top, animated by parent's timeline */
-.zoom-content {
-  position: fixed;
-  top: 80px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  overflow: hidden;
+/* Projects grid — vertical stack of rows */
+.projects-grid {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Transparent background — lets fog show through around the card */
-  padding: var(--space-md) var(--space-xl);
-  /* Prevent fixed overlay from blocking clicks on inactive cards */
-  pointer-events: none;
-
-  animation: zoom-scroll ease-in-out both;
-  animation-timeline: --zoom-section;
+  flex-direction: column;
+  gap: var(--space-2xl);
 }
 
-.zoom-content.is-active {
-  pointer-events: auto;
-  /* Override the animation's visibility: hidden at the fill boundaries */
-  visibility: visible;
+/* Projects row — 2 cards side by side, revealed on scroll */
+.projects-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+  align-items: start;
 }
 
-/* Non-zoom sections sit above the fixed zoom content */
-.page--projects .section:not(.zoom-section):not(.page-header),
+/* Non-card sections sit above the fog */
+.page--projects .section:not(.projects-grid-section):not(.page-header),
 .page--projects .footer {
   position: relative;
   z-index: 2;
@@ -1873,9 +1857,8 @@ html:has(.page--projects) {
   background-color: transparent;
 }
 
-/* Zoom Card — centered Art Deco container */
+/* Zoom Card — Art Deco project card */
 .zoom-card {
-  max-width: 720px;
   width: 100%;
   position: relative;
   display: flex;
@@ -2299,34 +2282,6 @@ html:has(.page--projects) {
   }
 }
 
-/* Zoom-card fallback: when scroll-driven animation is not supported */
-@supports not (animation-timeline: scroll()) {
-  html:has(.page--projects) {
-    scroll-snap-type: none;
-  }
-
-  .zoom-section {
-    height: auto;
-    scroll-snap-align: none;
-    scroll-snap-stop: unset;
-  }
-
-  .zoom-content {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 100%;
-    opacity: 1;
-    visibility: visible;
-    animation: none;
-    transform: none;
-    pointer-events: auto;
-    padding: var(--space-xl) var(--space-lg);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-}
 
 /* ==========================================================================
    Art Deco Footer (Projects Page)
@@ -2474,12 +2429,6 @@ html:has(.page--projects) {
     height: 1.25rem;
   }
 
-  .zoom-content {
-    padding: var(--space-lg) var(--space-md);
-    align-items: flex-start;
-    padding-top: calc(80px + var(--space-lg));
-  }
-
   .skills-grid {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: var(--space-md);
@@ -2495,28 +2444,3 @@ html:has(.page--projects) {
   }
 }
 
-/* Short viewport safety net — tighten zoom cards on laptop screens */
-@media screen and (max-height: 900px) and (min-width: 768px) {
-  .zoom-content {
-    padding: var(--space-sm) var(--space-lg);
-  }
-  .zoom-card {
-    padding: var(--space-md) var(--space-lg);
-    max-height: calc(100dvh - 80px - var(--space-lg));
-    overflow-y: auto;
-  }
-  .zoom-card__header { margin-bottom: var(--space-sm); }
-  .zoom-card__title { font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl)); }
-  .zoom-card__subtitle { margin-bottom: var(--space-sm); font-size: var(--text-base); }
-  .zoom-card__description { margin-bottom: var(--space-sm); }
-  .zoom-card__highlights { margin: 0 0 var(--space-sm) 0; }
-  .zoom-card__highlights li { margin-bottom: 4px; }
-  .zoom-card__tags { margin-bottom: var(--space-sm); }
-  .skills-category__inner { gap: var(--space-md); }
-}
-
-/* Subtle scrollbar for overflow fallback on zoom cards */
-.zoom-card::-webkit-scrollbar { width: 4px; }
-.zoom-card::-webkit-scrollbar-track { background: transparent; }
-.zoom-card::-webkit-scrollbar-thumb { background: var(--color-deco-border); border-radius: 2px; }
-.zoom-card { scrollbar-width: thin; scrollbar-color: var(--color-deco-border) transparent; }
