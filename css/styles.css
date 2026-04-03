@@ -1803,7 +1803,6 @@ html:has(.page--projects) {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-xl);
-  align-items: start;
 }
 
 /* Non-card sections sit above the fog */

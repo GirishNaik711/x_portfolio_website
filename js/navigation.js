@@ -71,6 +71,11 @@ const Navigation = (function() {
     // Prevent body scroll when menu is open
     document.body.style.overflow = isOpen ? 'hidden' : '';
 
+    // Ensure header is visible when menu opens
+    if (isOpen && header) {
+      header.style.transform = 'translateY(0)';
+    }
+
     // Update ARIA attributes
     navToggle.setAttribute('aria-expanded', isOpen);
 
@@ -178,17 +183,14 @@ const Navigation = (function() {
       header.style.boxShadow = 'none';
     }
 
-    // Hide/show header based on scroll direction (optional)
-    // Uncomment below to enable hide on scroll down behavior
-    /*
-    if (scrollY > lastScrollY && scrollY > scrollThreshold) {
-      // Scrolling down
-      header.style.transform = 'translateY(-100%)';
-    } else {
-      // Scrolling up
-      header.style.transform = 'translateY(0)';
+    // Hide header when scrolling down, show when scrolling up
+    if (!isOpen) {
+      if (scrollY > lastScrollY && scrollY > scrollThreshold) {
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        header.style.transform = 'translateY(0)';
+      }
     }
-    */
 
     lastScrollY = scrollY;
     ticking = false;
