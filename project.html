@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,8 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Pinyon+Script&display=swap"
+    rel="stylesheet">
 
   <!-- Fonts -->
   <link rel="stylesheet" href="assets/fonts/fonts.css">
@@ -20,8 +22,10 @@
   <link rel="stylesheet" href="css/responsive.css">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>*</text></svg>">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>*</text></svg>">
 </head>
+
 <body class="page--projects">
   <!-- Full-Page Fog Background -->
   <div id="fogBg" class="fog-background"></div>
@@ -83,19 +87,98 @@
 
           <!-- Row 1 -->
           <div class="projects-row animate-on-scroll fade-in-up">
-            <a class="zoom-card" href="https://github.com/GirishNaik711/Agentic-AI-Researcher" target="_blank" rel="noopener">
+            <a class="zoom-card" href="" target="_blank" rel="noopener">
               <div class="zoom-card__corner zoom-card__corner--tl"></div>
               <div class="zoom-card__corner zoom-card__corner--tr"></div>
               <div class="zoom-card__corner zoom-card__corner--bl"></div>
               <div class="zoom-card__corner zoom-card__corner--br"></div>
               <div class="zoom-card__header">
                 <span class="zoom-card__number">01</span>
+                <span class="zoom-card__category">STRATEGIC ARCHITECTURE &amp; SYSTEM DESIGN</span>
+              </div>
+              <h2 class="zoom-card__title">SAAS</h2>
+              <p class="zoom-card__subtitle">AUTOMATED ATS-OPTIMIZATION PIPELINE</p>
+              <p class="zoom-card__description">
+                A high-performance, asynchronous SaaS engine designed to transform static career data into job-aligned
+                assets.
+                Employs a decoupled "Dual-Repo" architecture with a FastAPI core and Next.js interface, utilizing a
+                specialized
+                worker-beat pattern for deterministic document processing and cost-aware scaling.
+              </p>
+              <ul class="zoom-card__highlights">
+                <li>Hybrid Processing: Rule-based extraction (pdfplumber) paired with multi-stage LLM mapping (Claude +
+                  Gemini) for high-fidelity tailoring.</li>
+                <li>Deterministic Compilation: Typst-based PDF generation engine delivering < 100ms render speeds
+                    without the overhead of heavy LaTeX containers.</li>
+                <li>Granular Credit Logic: Atomic PostgreSQL transactions with Redis-backed idempotency to ensure
+                  zero-loss billing and weekly free-tier rotation.</li>
+                <li>Observability-First Data: Tiered logging architecture (Raw → Hourly → Daily) for real-time COGS
+                  tracking and per-user cost attribution</li>
+              </ul>
+              <div class="zoom-card__tags">
+                <span class="zoom-card__tag">NEXT.JS</span>
+                <span class="zoom-card__tag">ReAct</span>
+                <span class="zoom-card__tag">FASTAPI</span>
+                <span class="zoom-card__tag">CELERY</span>
+                <span class="zoom-card__tag">SUPABASE</span>
+              </div>
+            </a>
+
+            <a class="zoom-card" href="" target="_blank" rel="noopener">
+              <div class="zoom-card__corner zoom-card__corner--tl"></div>
+              <div class="zoom-card__corner zoom-card__corner--tr"></div>
+              <div class="zoom-card__corner zoom-card__corner--bl"></div>
+              <div class="zoom-card__corner zoom-card__corner--br"></div>
+              <div class="zoom-card__header">
+                <span class="zoom-card__number">02</span>
+                <span class="zoom-card__category">INTELLIGENT CONTENT ORCHESTRATION</span>
+              </div>
+              <h2 class="zoom-card__title">Vichaar: The Thought-to-Video Engine</h2>
+              <p class="zoom-card__subtitle">Multi-Tool Agentic Orchestrator</p>
+              <p class="zoom-card__description">
+                An autonomous content refinery that transforms raw Slack inputs into polished LinkedIn assets and
+                AI-generated video. This system utilizes a stateful, event-driven architecture where two independent n8n
+                workflows synchronize through a shared Redis persistence layer to manage complex, multi-day
+                human-in-the-loop interactions.
+              </p>
+              <ul class="zoom-card__highlights">
+                <li>State-Machine Orchestration: Uses a "Session" concept in Redis to track content through seven
+                  distinct stages (from new to done), ensuring context is never lost across asynchronous API calls.</li>
+                <li>Recursive Feedback Loops: Features a dedicated "Revision Sub-Pipeline" that allows real-time
+                  refinement of LinkedIn posts and video scripts before final rendering.</li>
+                <li>Cross-Platform Synthesis: Integrates Perplexity for real-time research, Claude 3.5 Sonnet for
+                  creative writing, and HeyGen for high-fidelity avatar synthesis.</li>
+                <li>Fail-Safe Interactions: Implements a "Redis Refresh" pattern to bypass the data-loss limitations of
+                  standard n8n Wait nodes, maintaining 100% data integrity during long-running video renders.</li>
+              </ul>
+              <div class="zoom-card__tags">
+                <span class="zoom-card__tag">N8N</span>
+                <span class="zoom-card__tag">REDIS</span>
+                <span class="zoom-card__tag">CLAUDE</span>
+                <span class="zoom-card__tag">HEYGEN</span>
+              </div>
+            </a>
+          </div>
+
+
+          <!-- Row 2 -->
+          <div class="projects-row animate-on-scroll fade-in-up">
+            <a class="zoom-card" href="https://github.com/GirishNaik711/Agentic-AI-Researcher" target="_blank"
+              rel="noopener">
+              <div class="zoom-card__corner zoom-card__corner--tl"></div>
+              <div class="zoom-card__corner zoom-card__corner--tr"></div>
+              <div class="zoom-card__corner zoom-card__corner--bl"></div>
+              <div class="zoom-card__corner zoom-card__corner--br"></div>
+              <div class="zoom-card__header">
+                <span class="zoom-card__number">03</span>
                 <span class="zoom-card__category">Autonomous Research &amp; Agentic Workflows</span>
               </div>
               <h2 class="zoom-card__title">AI Research Agent</h2>
               <p class="zoom-card__subtitle">Autonomous Developer Tool Discovery</p>
               <p class="zoom-card__description">
-                An autonomous, multi-stage agentic system that replaces manual tool evaluation with a Dual-Agent approach. Simple Agent using the ReAct pattern for rapid responses, and an Advanced Agent employing LangGraph's StateGraph for deterministic research paths.
+                An autonomous, multi-stage agentic system that replaces manual tool evaluation with a Dual-Agent
+                approach. Simple Agent using the ReAct pattern for rapid responses, and an Advanced Agent employing
+                LangGraph's StateGraph for deterministic research paths.
               </p>
               <ul class="zoom-card__highlights">
                 <li>Dual-Agent: ReAct pattern + LangGraph StateGraph orchestration</li>
@@ -117,13 +200,15 @@
               <div class="zoom-card__corner zoom-card__corner--bl"></div>
               <div class="zoom-card__corner zoom-card__corner--br"></div>
               <div class="zoom-card__header">
-                <span class="zoom-card__number">02</span>
+                <span class="zoom-card__number">04</span>
                 <span class="zoom-card__category">Autonomous Research &amp; Agentic Workflows</span>
               </div>
               <h2 class="zoom-card__title">AI Trip Planner</h2>
               <p class="zoom-card__subtitle">Multi-Tool Agentic Orchestrator</p>
               <p class="zoom-card__description">
-                A consumer-facing agent that synthesizes real-time data from disparate APIs into a cohesive, personalized travel strategy, implementing a hybrid LLM approach with Groq for low-latency inference and OpenAI as a high-reliability fallback.
+                A consumer-facing agent that synthesizes real-time data from disparate APIs into a cohesive,
+                personalized travel strategy, implementing a hybrid LLM approach with Groq for low-latency inference and
+                OpenAI as a high-reliability fallback.
               </p>
               <ul class="zoom-card__highlights">
                 <li>Multi-Provider: Groq (DeepSeek R1 Distill Llama 70B) + OpenAI fallback</li>
@@ -140,21 +225,24 @@
             </a>
           </div>
 
-          <!-- Row 2 -->
+          <!-- Row 3 -->
           <div class="projects-row animate-on-scroll fade-in-up">
-            <a class="zoom-card" href="https://github.com/GirishNaik711/GPT_from_scratch" target="_blank" rel="noopener">
+            <a class="zoom-card" href="https://github.com/GirishNaik711/GPT_from_scratch" target="_blank"
+              rel="noopener">
               <div class="zoom-card__corner zoom-card__corner--tl"></div>
               <div class="zoom-card__corner zoom-card__corner--tr"></div>
               <div class="zoom-card__corner zoom-card__corner--bl"></div>
               <div class="zoom-card__corner zoom-card__corner--br"></div>
               <div class="zoom-card__header">
-                <span class="zoom-card__number">03</span>
+                <span class="zoom-card__number">05</span>
                 <span class="zoom-card__category">Foundational LLM Development &amp; NLP</span>
               </div>
               <h2 class="zoom-card__title">GPT From Scratch</h2>
               <p class="zoom-card__subtitle">First-Principles Transformer Implementation</p>
               <p class="zoom-card__description">
-                A deep-dive into the mathematical and structural foundations of GPT using PyTorch implementing scaled dot-product attention, causal masking, and a 10M-parameter transformer trained on Shakespearean prose from first principles.
+                A deep-dive into the mathematical and structural foundations of GPT using PyTorch implementing scaled
+                dot-product attention, causal masking, and a 10M-parameter transformer trained on Shakespearean prose
+                from first principles.
               </p>
               <ul class="zoom-card__highlights">
                 <li>Self-Attention with scaled dot-product and causal masking from scratch</li>
@@ -176,13 +264,14 @@
               <div class="zoom-card__corner zoom-card__corner--bl"></div>
               <div class="zoom-card__corner zoom-card__corner--br"></div>
               <div class="zoom-card__header">
-                <span class="zoom-card__number">04</span>
+                <span class="zoom-card__number">06</span>
                 <span class="zoom-card__category">Foundational LLM Development &amp; NLP</span>
               </div>
               <h2 class="zoom-card__title">WhatsApp Chat LM</h2>
               <p class="zoom-card__subtitle">Tokenization &amp; Fine-Tuning Pipeline</p>
               <p class="zoom-card__description">
-                An end-to-end NLP project focusing on custom BPE tokenization and model specialization implementing a tokenizer library from scratch with support for GPT-4 patterns, UTF-8, and complex emoji handling.
+                An end-to-end NLP project focusing on custom BPE tokenization and model specialization implementing a
+                tokenizer library from scratch with support for GPT-4 patterns, UTF-8, and complex emoji handling.
               </p>
               <ul class="zoom-card__highlights">
                 <li>Custom BPE Tokenizer: Basic, Regex-based, and UTF-8 variants</li>
@@ -199,7 +288,7 @@
             </a>
           </div>
 
-          <!-- Row 3 -->
+          <!-- Row 4 -->
           <div class="projects-row animate-on-scroll fade-in-up">
             <a class="zoom-card" href="https://github.com/GirishNaik711/py_development" target="_blank" rel="noopener">
               <div class="zoom-card__corner zoom-card__corner--tl"></div>
@@ -207,13 +296,15 @@
               <div class="zoom-card__corner zoom-card__corner--bl"></div>
               <div class="zoom-card__corner zoom-card__corner--br"></div>
               <div class="zoom-card__header">
-                <span class="zoom-card__number">05</span>
+                <span class="zoom-card__number">07</span>
                 <span class="zoom-card__category">Production-Grade Backend &amp; Infrastructure</span>
               </div>
               <h2 class="zoom-card__title">Social Media REST API</h2>
               <p class="zoom-card__subtitle">DevOps &amp; CI/CD Focused Backend</p>
               <p class="zoom-card__description">
-                A robust, scalable API built with FastAPI and PostgreSQL, showcasing the full software development lifecycle from JWT authentication and containerization to automated CI/CD pipelines and production deployment.
+                A robust, scalable API built with FastAPI and PostgreSQL, showcasing the full software development
+                lifecycle from JWT authentication and containerization to automated CI/CD pipelines and production
+                deployment.
               </p>
               <ul class="zoom-card__highlights">
                 <li>JWT authentication with bcrypt hashing and role-based access control</li>
@@ -229,19 +320,21 @@
               </div>
             </a>
 
-            <a class="zoom-card" href="https://github.com/GirishNaik711/pizza_delivery_BE" target="_blank" rel="noopener">
+            <a class="zoom-card" href="https://github.com/GirishNaik711/pizza_delivery_BE" target="_blank"
+              rel="noopener">
               <div class="zoom-card__corner zoom-card__corner--tl"></div>
               <div class="zoom-card__corner zoom-card__corner--tr"></div>
               <div class="zoom-card__corner zoom-card__corner--bl"></div>
               <div class="zoom-card__corner zoom-card__corner--br"></div>
               <div class="zoom-card__header">
-                <span class="zoom-card__number">06</span>
+                <span class="zoom-card__number">08</span>
                 <span class="zoom-card__category">Production-Grade Backend &amp; Infrastructure</span>
               </div>
               <h2 class="zoom-card__title">Pizza Delivery Backend</h2>
               <p class="zoom-card__subtitle">RBAC &amp; State Management</p>
               <p class="zoom-card__description">
-                A domain-specific API designed to demonstrate strict Role-Based Access Control and order state transitions with middleware-level role checks isolating Staff and Customer endpoints.
+                A domain-specific API designed to demonstrate strict Role-Based Access Control and order state
+                transitions with middleware-level role checks isolating Staff and Customer endpoints.
               </p>
               <ul class="zoom-card__highlights">
                 <li>Middleware-level RBAC distinguishing Staff vs Customer roles</li>
@@ -381,12 +474,14 @@
           </div>
 
           <p class="footer-deco__name">Girish Naik</p>
-          <p class="footer-deco__role">Digital Designer &amp; Developer</p>
+          <p class="footer-deco__role">AI Wizard</p>
 
           <nav class="footer-deco__links">
-            <a href="https://github.com/GirishNaik711" class="footer-deco__link" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://github.com/GirishNaik711" class="footer-deco__link" target="_blank"
+              rel="noopener">GitHub</a>
             <span class="footer-deco__sep">&middot;</span>
-            <a href="https://www.linkedin.com/in/girish-naik711/" class="footer-deco__link" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/girish-naik711/" class="footer-deco__link" target="_blank"
+              rel="noopener">LinkedIn</a>
             <span class="footer-deco__sep">&middot;</span>
             <a href="contact.html" class="footer-deco__link">Contact</a>
           </nav>
@@ -426,7 +521,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="fog.min.js"></script>
   <script>
-    (function() {
+    (function () {
       var fogEffect = (typeof VANTA !== 'undefined' && VANTA.FOG) || (_vantaEffect && _vantaEffect.default);
       if (!fogEffect) return;
       var fogEl = document.getElementById('fogBg');
@@ -450,4 +545,5 @@
     })();
   </script>
 </body>
+
 </html>
